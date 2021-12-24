@@ -1,0 +1,35 @@
+{
+  "name": "getir-nodejs-bootcamp-graduation-project-furkan-cloud",
+  "description": "getir nodejs bootcamp graduation project with express",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "eslint": "8.2.0",
+    "eslint-config-airbnb-base": "15.0.0",
+    "eslint-plugin-import": "2.25.2",
+    "nodemon": "^2.0.15"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/getir-nodejs-bootcamp/getir-nodejs-bootcamp-graduation-project-furkan-cloud.git"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "jest",
+    "heroku"
+  ],
+  "author": "furkan türkoğlu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/getir-nodejs-bootcamp/getir-nodejs-bootcamp-graduation-project-furkan-cloud/issues"
+  },
+  "homepage": "https://github.com/getir-nodejs-bootcamp/getir-nodejs-bootcamp-graduation-project-furkan-cloud#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
