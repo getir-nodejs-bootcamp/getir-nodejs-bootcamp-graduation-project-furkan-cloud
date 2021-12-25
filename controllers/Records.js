@@ -1,15 +1,15 @@
 const Service = require('../services/Records');
 const RecordService = new Service();
+const ApiError = require('../errors/ApiError');
 
 // Request handler
-exports.getData = async (req, res) => {
+exports.getData = async (req, res, next) => {
   console.log(`req.body`, req.body);
 
   // Assign endDate to variable for modifying date
   const endDate = new Date(req.body.endDate);
 
-  // Request object for get data from API
-  const records = await RecordService.list([
+  const pipeline = [
     {
       // Query for createdAt property
       $match: {
@@ -44,15 +44,23 @@ exports.getData = async (req, res) => {
         value: 0,
       },
     },
-  ]).exec((err, data) => {
-    // Response payload for unsuccessful request
-    if (err) console.log(err);
+  ];
 
-    // Response payload for successful request
-    return res.status(200).json({
-      code: 0,
-      msg: 'Success',
-      records: data,
-    });
-  });
+  // Request object for get data from API
+  const records = await RecordService.list(pipeline)
+    .then((data) => {
+      if (!data) {
+        return next(ApiError.notFound('No data found with that query', 404));
+      }
+      res.status(200).json({
+        code: 0,
+        msg: 'Success',
+        records: data,
+      });
+    })
+    .catch((err) =>
+      next(
+        ApiError.internalError('Something wrong happened in internal server')
+      )
+    );
 };
