@@ -12,14 +12,14 @@ class ApiError extends Error {
 
   static notFound(message, status) {
     console.log('objectnotfound :>> ', message);
-    this.errorCode = 2;
+    this.errorCode = 1;
     this.status = 404;
     return new ApiError(message, this.errorCode, this.status);
   }
 
   static internalError(message) {
     console.log('internalError :>> ', message);
-    this.errorCode = 3;
+    this.errorCode = 2;
     this.status = 500;
     return new ApiError(message, this.errorCode, this.status);
   }

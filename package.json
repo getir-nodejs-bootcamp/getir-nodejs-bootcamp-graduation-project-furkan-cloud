@@ -15,8 +15,8 @@
     "supertest": "^6.1.6"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "test": "jest",
+    "start": "nodemon src/app.js"
   },
   "repository": {
     "type": "git",
@@ -42,5 +42,24 @@
     "http-status": "^1.5.0",
     "joi": "^17.5.0",
     "mongoose": "^6.1.3"
+  },
+  "apidoc": {
+    "title": "Case Project",
+    "url" : "http://127.0.0.1:5500",
+    "header": {
+      "title": "Introduction",
+      "filename": "header.md"
+    },
+    "footer": {
+      "title": "Additional Notes",
+      "filename": "footer.md"
+    },
+    "template": {
+      "showRequiredLabels": false,
+      "withCompare": true,
+      "withGenerator": true,
+      "aloneDisplay": false
+    }
   }
+
 }

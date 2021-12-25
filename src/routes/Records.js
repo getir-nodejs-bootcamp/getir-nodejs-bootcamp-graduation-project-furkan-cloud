@@ -5,11 +5,7 @@ const validate = require('../middlewares/validate');
 
 const router = express.Router();
 
-/**
- * @route   POST /records
- * @desc    Get filtered Records data
- * @access  Public
- */
+
 router
   .route('/records')
   .post(validate(schemas.getRecords, 'body'), recordController.getData);
