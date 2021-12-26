@@ -5,9 +5,13 @@ const validate = require('../middlewares/validate');
 
 const router = express.Router();
 
-
+/**
+ * @route   POST /records
+ * @desc    Route for get filtered records data with validation
+ * @access  Public
+ */
 router
   .route('/records')
-  .post(validate(schemas.getRecords, 'body'), recordController.getData);
+  .post(validate(schemas.getRecords, 'body'), recordController.getRecords);
 
 module.exports = router;

@@ -2,67 +2,18 @@ const Service = require('../services/Records');
 const RecordService = new Service();
 const ApiError = require('../errors/ApiError');
 
-/**
- * @api {post} /records Get Records information
- * @apiVersion 0.0.0
- * @apiName getData
- * @apiGroup Records
- * 
- * @apiBody {String} startDate    Mandatory start date
- * @apiBody {String} endDate      Mandatory end date
- * @apiBody {Number} minCount     Mandatory positive min count (can be zero)
- * @apiBody {Number} maxCount     Mandatory positive max count
- *
- * @apiSuccess (200) {String} code                 Status For Request.
- * @apiSuccess (200) {String} msg                  Description Of The Code.
- * @apiSuccess (200) {Array} records               Filtered Items according to the request.
- * @apiSuccess (200) {String} records.key          Filtered Items according to the request.
- * @apiSuccess (200) {String} records.createdAt    Created Date of the record
- * @apiSuccess (200) {Number} records.totalCount   Sum of the counts of the record
- *
- * @apiSuccessExample Success-Response:
- *     HTTP/1.1 200 OK
- *     {
- *       "code": 0,
- *       "msg": "Success",
- *       "records": [
- *            {
- *                  "key": "RXczioLf",
- *                  "createdAt": "2016-12-23T01:03:04.111Z",
- *                  "totalCount": 62
- *            },
- *            {
- *                  "key": "MEcffHVK",
- *                  "createdAt": "2016-12-02T19:02:04.249Z",
- *                  "totalCount": 68
- *            },
- *                   ]
- *      }
- *
- * @apiError (Error 4xx) NotFound          Response payload or page was not found.
- * @apiErrorExample Error-Response:
- *     HTTP/1.2 404 Not Found
- *     {
- *       "code": 1,
- *       "msg": "No data found with that query"
- *     }
- * 
- * @apiError (Error 5xx) InternalServer    Server encountered an unexpected condition that prevented it from fulfilling the request.
- * @apiErrorExample Error-Response:
- *     HTTP/1.2 500 Internal Server Error
- *     {
- *       "code": 2,
- *       "msg": "Something wrong happened in internal server"
- *     }
+/*
+ *description : getRecords Request Handler for fetching data from db
+ *@params(req : Request Body Object, res : Response, next: Callback Function)
+ *@return Object with response payload
  */
-
-// Request handler
-exports.getData = async (req, res, next) => {
+exports.getRecords = async (req, res, next) => {
   console.log(`req.body`, req.body);
 
-  // Assign endDate to variable for modifying date
+  // Assign endDate to variable because we weil modify it
   const endDate = new Date(req.body.endDate);
 
+  // Query for fetch data from db
   const pipeline = [
     {
       // Query for createdAt property
@@ -103,9 +54,12 @@ exports.getData = async (req, res, next) => {
   // Request object for get data from API
   const records = await RecordService.list(pipeline)
     .then((data) => {
+      // return notFound error if response payload not found
       if (!data) {
         return next(ApiError.notFound('No data found with that query', 404));
       }
+
+      // return response payload if request made successfully
       res.status(200).json({
         code: 0,
         msg: 'Success',
@@ -113,6 +67,7 @@ exports.getData = async (req, res, next) => {
       });
     })
     .catch((err) =>
+    // return internal server error if there is problem with server 
       next(
         ApiError.internalError('Something wrong happened in internal server')
       )

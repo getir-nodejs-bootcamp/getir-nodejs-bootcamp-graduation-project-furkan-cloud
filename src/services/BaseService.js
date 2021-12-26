@@ -5,6 +5,7 @@ class BaseService {
   }
 
   // common methods for services
+  // list method for fetching and listing filtered data from model according to query
   list(where) {
     return this.BaseModel?.aggregate(where || {});
   }
