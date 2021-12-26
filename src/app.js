@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan')
+const cors = require("cors");
 const config = require('./config');
 const router = require('./routes');
 const loaders = require('./loaders');
@@ -12,7 +13,8 @@ config(); // set env config
 loaders(); // load db
 
 // middlewares
-app.use(express.json());
+app.use(cors()) // cors miiddleware
+app.use(express.json());  // express body parser middleware
 app.use(morgan('combined', { stream: accessLogStream })) // setup the logger
 
 app.listen(process.env.APP_PORT, () => {

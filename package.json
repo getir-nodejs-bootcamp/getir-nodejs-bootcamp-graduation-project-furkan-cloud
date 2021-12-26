@@ -16,7 +16,6 @@
     "supertest": "^6.1.6"
   },
   "scripts": {
-
     "test": "jest",
     "start": "nodemon src/app.js"
   },
@@ -39,6 +38,7 @@
   "homepage": "https://github.com/getir-nodejs-bootcamp/getir-nodejs-bootcamp-graduation-project-furkan-cloud#readme",
   "dependencies": {
     "@joi/date": "^2.1.0",
+    "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.2",
     "http-status": "^1.5.0",
