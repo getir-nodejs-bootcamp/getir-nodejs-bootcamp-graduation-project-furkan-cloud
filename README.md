@@ -27,7 +27,7 @@ Once the dependencies are installed, you can run yarn start to start the applica
 
 ## Tests
 
-You can run implmented test with the command below.
+You can run implemented tests with the command below.
 
 ```bash
 yarn test

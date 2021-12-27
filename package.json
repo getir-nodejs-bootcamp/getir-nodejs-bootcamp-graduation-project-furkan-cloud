@@ -53,10 +53,6 @@
       "title": "Introduction",
       "filename": "header.md"
     },
-    "footer": {
-      "title": "Additional Notes",
-      "filename": "footer.md"
-    },
     "template": {
       "showRequiredLabels": false,
       "withCompare": true,
