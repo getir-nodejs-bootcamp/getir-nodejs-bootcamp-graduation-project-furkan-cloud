@@ -7,19 +7,24 @@ const ApiError = require('../errors/ApiError');
  *@params(req : Request Body Object, res : Response, next: Callback Function)
  *@return Object with response payload
  */
-exports.getRecords = async (req, res, next) => {
+exports.getRecords = (req, res, next) => {
   console.log(`req.body`, req.body);
 
   // Assign endDate to variable because we weil modify it
   const endDate = new Date(req.body.endDate);
+  const startDate = new Date(req.body.startDate);
+  const minCount = req.body.minCount;
+  const maxCount = req.body.maxCount
+
 
   // Query for fetch data from db
   const pipeline = [
     {
       // Query for createdAt property
+      //! Filter before adding total count param to reduce time and effort for fetch process
       $match: {
         createdAt: {
-          $gte: new Date(req.body.startDate),
+          $gte: startDate,
           $lte: new Date(endDate.setHours(23, 59, 59, 999)),
         },
       },
@@ -39,7 +44,7 @@ exports.getRecords = async (req, res, next) => {
     {
       // Query for totalCount property
       $match: {
-        totalCount: { $gte: req.body.minCount, $lte: req.body.maxCount },
+        totalCount: { $gte: minCount, $lte: maxCount },
       },
     },
     {
@@ -47,16 +52,18 @@ exports.getRecords = async (req, res, next) => {
       $project: {
         _id: 0,
         value: 0,
+        counts: 0,
       },
     },
   ];
-
+  console.log("before fetching")
   // Request object for get data from API
-  const records = await RecordService.list(pipeline)
+  const records = RecordService.list(pipeline)
     .then((data) => {
       // return notFound error if response payload not found
+      console.log("data fetched")
       if (!data) {
-        return next(ApiError.notFound('No data found with that query', 404));
+        return next(ApiError.notFound('No data found with that query'));
       }
 
       // return response payload if request made successfully

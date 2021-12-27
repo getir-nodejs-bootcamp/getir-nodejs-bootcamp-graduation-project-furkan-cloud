@@ -1,6 +1,6 @@
 // documentation
 /**
- * @api {post} /records Get Records information
+ * @api {post} /records Fetch Records information
  * @apiVersion 0.0.0
  * @apiName getRecords
  * @apiGroup Records
@@ -13,9 +13,9 @@
  * @apiSuccess (200) {String} code                 Status For Request.
  * @apiSuccess (200) {String} msg                  Description Of The Code.
  * @apiSuccess (200) {Array} records               Filtered Items according to the request.
- * @apiSuccess (200) {String} records.key          Filtered Items according to the request.
- * @apiSuccess (200) {String} records.createdAt    Created Date of the record
- * @apiSuccess (200) {Number} records.totalCount   Sum of the counts of the record
+ * @apiSuccess (200) {String} records.key          Key of the record.
+ * @apiSuccess (200) {String} records.createdAt    Created Date of the record.
+ * @apiSuccess (200) {Number} records.totalCount   Sum of the counts of the record.
  *
  * @apiSuccessExample Success-Response:
  *     HTTP/1.1 200 OK
@@ -37,18 +37,25 @@
  *      }
  *
  * @apiError (Error 4xx) NotFound          Response payload or page was not found.
- * @apiErrorExample Error-Response:
- *     HTTP/1.2 404 Not Found
+ * @apiError (Error 4xx) BadRequest        The server could not understand the request due to invalid syntax.
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.2 400 Bad Request
+ *     {
+ *       "code": 2,
+ *       "msg": "\"minCount\" must be greater than or equal to 0"
+ *     }
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.3 404 Not Found
  *     {
  *       "code": 1,
  *       "msg": "No data found with that query"
  *     }
  *
  * @apiError (Error 5xx) InternalServer    Server encountered an unexpected condition that prevented it from fulfilling the request.
- * @apiErrorExample Error-Response:
- *     HTTP/1.2 500 Internal Server Error
+ * @apiErrorExample {json} Error-Response:
+ *     HTTP/1.4 500 Internal Server Error
  *     {
- *       "code": 2,
+ *       "code": 3,
  *       "msg": "Something wrong happened in internal server"
  *     }
  */
