@@ -1,4 +1,5 @@
 const httpStatus = require('http-status');
+const ApiError = require('../errors/ApiError');
 
 // validate middleware for validating request payload with Joi
 const validate = (schema, source) => (req, res, next) => {
@@ -9,9 +10,9 @@ const validate = (schema, source) => (req, res, next) => {
     const errorMessage = error?.details
       ?.map((detail) => detail?.message)
       .join(', ');
-    return res.status(httpStatus.BAD_REQUEST).send({ error: errorMessage });
+    return next(ApiError.validationError(errorMessage)); // throw validation error for invalid request body params
   }
-  Object.assign(req, value); // Assign error value to request payload
+  Object.assign(req, value); // Assign validated value to request payload
   return next(); // Pass to next middleware
 };
 

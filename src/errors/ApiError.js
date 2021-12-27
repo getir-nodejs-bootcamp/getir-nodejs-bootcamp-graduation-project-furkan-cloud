@@ -17,9 +17,16 @@ class ApiError extends Error {
     return new ApiError(message, this.errorCode, this.status);
   }
 
+  static validationError(message, status) {
+    console.log('validationError :>> ', message);
+    this.errorCode = 2;
+    this.status = 400;
+    return new ApiError(message, this.errorCode, this.status);
+  }
+
   static internalError(message) {
     console.log('internalError :>> ', message);
-    this.errorCode = 2;
+    this.errorCode = 3;
     this.status = 500;
     return new ApiError(message, this.errorCode, this.status);
   }
