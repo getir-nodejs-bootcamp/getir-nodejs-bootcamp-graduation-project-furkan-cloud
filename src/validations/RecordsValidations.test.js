@@ -3,12 +3,15 @@ const Mongoose = require('mongoose');
 const app = require('../config/app');
 
 describe('Test the validations for /records url', () => {
+  // change default max time for testing
   jest.setTimeout(15000);
 
+  // connect db to test validations before testing
   beforeAll(() => {
     Mongoose.connect(process.env.MONGO_URI);
   });
 
+  // disconnect from db after all tests done
   afterAll((done) => {
     Mongoose.disconnect(done);
   });
