@@ -10,13 +10,14 @@ const RecordsSchema = new Schema(
     value: {
       type: String,
     },
+    createdAt: {
+      type: Date,
+    },
     counts: {
       type: [Number],
     },
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true, versionKey: false }
 );
 
 // Convert RecordsSchema into a model to use our schema definition

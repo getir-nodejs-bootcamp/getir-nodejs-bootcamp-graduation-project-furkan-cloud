@@ -1,5 +1,5 @@
 const BaseService = require('./BaseService');
-const BaseModel = require('../models/Records');
+const BaseModel = require('../models/Record');
 
 // BaseService instance for Records
 class Records extends BaseService {
