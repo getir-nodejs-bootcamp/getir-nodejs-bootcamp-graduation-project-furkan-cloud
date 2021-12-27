@@ -6,6 +6,7 @@ const sendErrorDev = (err, res) => {
     stack: err.stack,
     code: err.errorCode,
     msg: err.message || 'Internal Server Error...',
+    records: [],
   });
 };
 
@@ -13,6 +14,7 @@ const sendErrorProd = (err, res) => {
   res.status(err.status).json({
     code: err.errorCode,
     msg: err.message || 'Internal Server Error...',
+    records: [],
   });
 };
 
