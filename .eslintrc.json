@@ -6,10 +6,10 @@
         "node": true
     },
     "extends": [
-        "airbnb-base",
+        "airbnb-base"
     ],
     "parserOptions": {
-        "ecmaVersion": 13
+        "ecmaVersion": "latest"
     },
     "rules": {
     }
