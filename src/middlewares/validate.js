@@ -1,4 +1,3 @@
-const httpStatus = require('http-status');
 const ApiError = require('../errors/ApiError');
 
 // validate middleware for validating request payload with Joi

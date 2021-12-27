@@ -7,7 +7,6 @@ describe('Test the validations for /records url', () => {
 
   beforeAll(() => {
     Mongoose.connect(process.env.MONGO_URI);
-    // config();
   });
 
   afterAll((done) => {

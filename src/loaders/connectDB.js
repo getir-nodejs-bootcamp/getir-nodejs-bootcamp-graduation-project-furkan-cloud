@@ -14,7 +14,7 @@ const connectDB = async () => {
 
 // handle errors after initial DB connection
 Mongoose.connection.on('error', (err) => {
-  console.log("errors after initial DB connection", err);
+  console.log('errors after initial DB connection', err);
 });
 
 module.exports = connectDB;

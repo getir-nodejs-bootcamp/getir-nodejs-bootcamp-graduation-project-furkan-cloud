@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
+
 const config = require('./config');
 const router = require('../routes');
 const loaders = require('../loaders/connectDB');
@@ -19,7 +20,7 @@ app.use(
     methods: '*',
     origin: '*',
   })
-); // cors miiddleware
+); // cors middleware
 app.use(express.json()); // express body parser middleware
 app.use(express.static('doc')); // middleware for static files
 app.use(morgan('combined', { stream: accessLogStream })); // setup the logger

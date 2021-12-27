@@ -10,22 +10,19 @@ class ApiError extends Error {
     Error.captureStackTrace(this, this.constructor);
   }
 
-  static notFound(message, status) {
-    console.log('objectnotfound :>> ', message);
+  static notFound(message) {
     this.errorCode = 1;
     this.status = 404;
     return new ApiError(message, this.errorCode, this.status);
   }
 
-  static validationError(message, status) {
-    console.log('validationError :>> ', message);
+  static validationError(message) {
     this.errorCode = 2;
     this.status = 400;
     return new ApiError(message, this.errorCode, this.status);
   }
 
   static internalError(message) {
-    console.log('internalError :>> ', message);
     this.errorCode = 3;
     this.status = 500;
     return new ApiError(message, this.errorCode, this.status);
