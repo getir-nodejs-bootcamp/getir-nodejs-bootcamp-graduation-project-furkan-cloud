@@ -1,26 +1,34 @@
-# Getir Node.js Bootcamp Graduation Project
-## The Challenge
-We’d like you to create a RESTful API with a single endpoint that fetches the data in the provided MongoDB collection and return the results in the requested format.
-Requirements
-- The code should be written in Node.js using express framework
-- The endpoint should just handle HTTP POST requests.
-- The application should be deployed on AWS or Heroku. You don’t need to use any API Gateway, Load Balancers or any other layer than the developed application.
-- The up to date repo should be publicly available in Github, Bitbucket or equivalent.
+# Getir Nodejs Bootcamp Graduation Project
 
-## Deliverables
-- The public repo URL which has the source code of the project, and a set of instructions if there is any project specific configurations needed to run the project.
-- The public endpoint URL of the deployed API which is available for testing.
+This is a backend project for graduation from Patika.dev Getir Nodejs bootcamp which uses NodeJS, Express, MongoDB, ApiDoc and Jest.
+There is one route for post requests and response will be records payload from db.
 
-## Worth Highlighting
-We expect these requirements can be delivered in 3 to 6 hours. However, it is not a speed test. Take your time! Your feedback on how much actual time you were needed to deliver the task will be very helpful but will not be used for the evaluation.
-You are free to use any libraries to deliver the needed functionality, but be prepared to explain other solutions that you would have implemented if you have more time.
+## Description
+- This is a production ready RESTful API and user can fetch records according to specific queries
+- Error Handling implemented for catching internal server errors, validation errors and unknown url requests
+- Documentation implemented for routes
+- Route test added with Jest
 
-## Crucial Points
-- Delivering a Working RESTful API.
-- Clean and Production Ready Code
-- Error Handling
-- Comments and Documentation
-- Unit and/or Integration Tests (Jest is preferable but Mocha also works)
-- Avoid Over Engineering
+## Installation
 
-Good luck with this assignment! Try to make good use of this task to demonstrate and show off your coding skills. If you have any questions, don’t hesitate to ask your contact person within Getir.
+Yarn package manager used in this project.
+For avoiding conflicts or errors it is recommended to use yarn instead of npm.
+You can download [yarn](https://yarnpkg.com/) from this address.
+Clone this repo to your desktop and run `yarn install` to install all the dependencies.
+You should look into .env.example to set neccessary environment variables before starting the project.
+
+## Run
+
+Once the dependencies are installed, you can run yarn start to start the application. You will then be able to access it at localhost:PORT
+
+## API Documentation
+
+-   Detailed documentation available on this page [main page](https://furkan-turkoglu-getir-case.herokuapp.com/)
+
+## Tests
+
+You can run implmented test with the command below.
+
+```bash
+yarn test
+```
